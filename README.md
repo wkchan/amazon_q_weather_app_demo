@@ -33,7 +33,22 @@ A simple weather portal built with Next.js and TypeScript that displays current 
 
 ## Tech Stack
 
-- Next.js 14 with App Router
+- Next.js 15.2.2 with App Router
+- React 19
 - TypeScript
 - OpenWeatherMap API
 - CSS3 with modern styling
+- Jest & Testing Library for TDD
+
+## Development Methodology
+
+This project follows Kent Beck's Test-Driven Development (TDD) and Tidy First principles:
+
+- **Red-Green-Refactor cycle**: Write failing tests first, implement minimal code, then refactor
+- **Tidy First approach**: Separate structural changes from behavioral changes
+- **Comprehensive test coverage**: Unit and integration tests for all functionality
+
+## References
+
+- [Kent Beck's Tidy First Blog](https://tidyfirst.substack.com/p/augmented-coding-beyond-the-vibes) - Augmented Coding: Beyond the Vibes
+- [OpenWeatherMap API Documentation](https://openweathermap.org/api)
