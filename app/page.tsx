@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { WeatherData } from './types';
+import { fetchWeatherData } from './weatherService';
 
 export default function Home() {
   const [city, setCity] = useState('');
@@ -9,7 +10,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const fetchWeather = async (e: React.FormEvent) => {
+  const handleWeatherSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!city.trim()) return;
 
@@ -17,16 +18,7 @@ export default function Home() {
     setError('');
     
     try {
-      const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
-      );
-      
-      if (!response.ok) {
-        throw new Error('City not found');
-      }
-      
-      const data: WeatherData = await response.json();
+      const data = await fetchWeatherData(city);
       setWeather(data);
     } catch (err) {
       setError('Failed to fetch weather data. Please check the city name.');
@@ -40,7 +32,7 @@ export default function Home() {
     <div className="container">
       <h1 className="title">Weather Portal</h1>
       
-      <form onSubmit={fetchWeather} className="search-form">
+      <form onSubmit={handleWeatherSearch} className="search-form">
         <input
           type="text"
           value={city}
